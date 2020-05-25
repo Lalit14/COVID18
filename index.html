@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>corona Update</title>
+  </head>
+  <body>
+    <h1>Corona Cases : Globally </h1>
+
+    <table class="table table-striped">
+        <!-- <thead> -->
+<!--           
+          
+         </thead> -->
+        <tbody id="global-wise">
+          
+        </tbody>
+      </table>
+      <div class="container">
+        <h1>Cases in India</h1>
+    
+        <table class="table table-striped">
+            <!-- <thead> -->
+    <!--           
+              
+             </thead> -->
+             <tr>
+             <!-- <td>Country</td> -->
+            <td>New Confirmed</td>
+             <td>New Deaths</td>
+             <td>New Recovered</td>
+             <td>Total Confirmed</td>
+             <td>Total Deaths</td>
+             <td>Total Recovered</td>
+             <tr>
+            <tbody id="india2-wise">
+              
+            </tbody>
+          </table>
+              
+        </tbody>
+      </table>
+    </div>   
+    
+  <div class="container">
+        <h1>Cases in countries </h1>
+    
+        <table class="table table-striped">
+            <!-- <thead> -->
+    <!--           
+              
+             </thead> -->
+             <tr>
+             <td>Country</td>
+            <td>New Confirmed</td>
+             <td>New Deaths</td>
+             <td>New Recovered</td>
+             <td>Total Confirmed</td>
+             <td>Total Deaths</td>
+             <td>Total Recovered</td>
+             <tr>
+            <tbody id="india-wise">
+              
+            </tbody>
+          </table>
+              
+        </tbody>
+      </table>
+  </div>    
+
+    <script src="js/jquery-3.5.1.js" ></script>
+<script type="text/JavaScript">
+
+$.ajax({
+        url:"https://api.covid19api.com/summary",
+        type:"GET",
+        dataType:"JSON",
+        success:function(data){
+                console.log(data);
+                console.log(data.Global);
+                console.log(data.Global.NewConfirmed)
+        $.each(data.Global,function(key,value){
+            // console.log(key+" "+value);
+            $("#global-wise").append("<tr><td>"+key+"</td><td>"+value+"</td></tr>");
+
+        
+})
+
+$.each(data.Countries,function(key,value){
+            // console.log(key+" "+value);
+            $("#india-wise").append("<tr>"+
+                                           " <td>"+value.Country+"</td>"+
+                                           " <td>"+value.NewConfirmed+"</td>"+
+                                            "<td>"+value.NewDeaths+"</td>"+
+                                            "<td>"+value.NewRecovered+"</td>"+
+                                           " <td>"+value.TotalConfirmed+"</td>"+
+                                            "<td>"+value.TotalDeaths+"</td>"+
+                                            "<td>"+value.TotalRecovered+"</td>"+
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            "</tr>");
+
+        
+})
+
+$("#india2-wise").append("<tr>"+
+                            "<td>"+data.Countries[76].NewConfirmed+"</td>"+
+                         "   <td>"+data.Countries[76].NewDeaths+"</td>"+
+                            "<td>"+data.Countries[76].NewRecovered+"</td>"+
+                            "<td>"+data.Countries[76].TotalConfirmed+"</td>"+
+                            "<td>"+data.Countries[76].TotalDeaths+"</td>"+
+                            "<td>"+data.Countries[76].TotalRecovered+"</td>"+
+                            
+                            +"</tr>");
+
+
+
+
+
+
+
+// Country: "Afghanistan"
+// CountryCode: "AF"
+// Date: "2020-05-25T11:33:58Z"
+// NewConfirmed: 584
+// NewDeaths: 2
+// NewRecovered: 35
+// Slug: "afghanistan"
+// TotalConfirmed: 10582
+// TotalDeaths: 218
+// TotalRecovered: 1075
+
+
+
+
+
+
+        }
+
+})
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
